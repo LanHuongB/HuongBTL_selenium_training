@@ -1,4 +1,4 @@
-# dict
+'''# dict
 employee = {
     "name" : "HuongBTL" ,
     "age" : 26,
@@ -62,14 +62,18 @@ print("lan huong".find("a"))
 print("lan huong".find("y"))
 my_list = ["a","b","c"]
 print(my_list[1])
-
+'''
 students = [
      {"name": "An", "scores": [8.0, 7.5, 9]}, 
      {"name": "Bình", "scores": [6, 5.5, 7.0]}, 
      {"name": "Cường", "scores": [9, 9.5, 10]}
        ]
 ''' in ra tên và điểm trung bình của từng sinh viên theo định dạng
-An - Average: 8.17'''
+An - Average: 8.17
+ Thêm
+1. Thực hiện add thêm student vào list
+2. Xóa student cuối cùng ra khỏi list
+3. Đếm xem có bao nhiêu student có điểm trung bình trên 8.0
 
 #Lấy ra thông tin từng học sinh
 hs_0 = (students[0])
@@ -80,12 +84,25 @@ name_hs_0 = hs_0["name"]
 name_hs_1 = hs_1["name"]
 name_hs_2 = hs_2["name"]
 #Tính điểm trung bình từng học sinh (Làm tròn tới số thập phân thứ 2)
-'''avg_hs_0 =sum(hs_0["scores"]) / len(hs_0["scores"]) => tính điểm trung bình
-#avg_hs_0_fl = round(avg_hs_0, 2) => Làm tròn tới số thập phân thứ 2'''
-avg_hs_0 = round(sum(hs_0["scores"]) / len(hs_0["scores"]), 2)
+avg_hs_0 =sum(hs_0["scores"]) / len(hs_0["scores"]) => tính điểm trung bình
+avg_hs_0_fl = round(avg_hs_0, 2) => Làm tròn tới số thập phân thứ 2'''
+'''avg_hs_0 = round(sum(hs_0["scores"]) / len(hs_0["scores"]), 2)
 avg_hs_1 = round(sum(hs_0["scores"]) / len(hs_1["scores"]), 2)
 avg_hs_2 = round(sum(hs_2["scores"]) / len(hs_2["scores"]), 2)
 #in ra kết quả
 print(name_hs_0,"- Average:", avg_hs_0)
 print(name_hs_1,"- Average:", avg_hs_1)
-print(name_hs_2,"- Average:", avg_hs_2)
+print(name_hs_2,"- Average:", avg_hs_2)'''
+
+#1: Add thêm học sinh
+## Dùng append
+hs_3 = {"name":"Lan","scores":[5,5,5]}
+students.append(hs_3)
+print(students)
+## Dùng insert
+#students.insert(3, hs_3)
+#print(students)
+
+# 2. Xoá học sinh cuối cùng ra khỏi list
+students.remove(hs_3)
+print(students)
