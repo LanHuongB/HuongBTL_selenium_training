@@ -44,7 +44,19 @@ Cường - Average: 9.5'''
   xep_loai = "Yếu"
  print("Học lực của",x.get("name"),"la:",xep_loai)'''
 
-
+#Tìm sinh viên có điểm trung bình cao nhất
+'''max_score = 0
 for x in students:
- avg = round(sum(x["scores"].values())/len(x["scores"].values()), 2)
- if avg
+ avg = round(sum(x["scores"].values())/len(x["scores"].values()), 2) #Tính điểm trung bình theo vòng lặp
+ if avg > max_score: #so sánh theo vòng lặp
+  max_score = avg
+print("điểm trung bình cao nhất là:",x["name"],":",avg)'''
+
+my_list = ''
+for x in students:
+ if x.get("scores")["Toán"] not in students:
+  my_list = []
+else:
+  my_list = (x.get("scores").values())
+print(my_list)
+ 
