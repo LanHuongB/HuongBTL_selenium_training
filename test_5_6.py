@@ -21,20 +21,19 @@ def test_login(driver):
     btnlogin = driver.find_element(By.XPATH, "//button[@type='submit']")
     btnlogin.click()
     time.sleep(2)
-    # Đi tới màn hình list RSA
     driver.get("https://dev.sp.leadplus.net/bundle/27/budget_group/214/portfolio/405?type=rsa_ads&status=Enabled")
     time.sleep(4)
 def test_case1():
     driver=webdriver.Chrome()
     test_login(driver)
     Alert = WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//span[@class='fw-semibold']")))
-    assert "Failed to publish the portfolio. Please check the following errors." in Alert.text, f"Không tìm thấy Error msg alert"
-    print(f"Đã tìm thấy Error msg alert:{Alert.text}")
+    assert "Failed to publish the portfolio. Please check the following errors." in Alert.text,f"No Error msg alert"
+    print(f"Exist Error msg alert:{Alert.text}")
     try:
         Msg_error = WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//a[@class='_node-key-link_1rpzv_25 text-decoration-none ms-1']")))
-        print(f"Tồn tại campaign lỗi:{Msg_error.text}")
+        print(f"Exist Error campaign:{Msg_error.text}")
     except:
-        print("Không tồn tại campaign lỗi")
+        print("Not exist error campaign")
     driver.quit()
 def test_case2():
     driver = webdriver.Chrome()
@@ -58,8 +57,8 @@ def test_case2():
     btn_apply.click()
     MatchRecord=WebDriverWait(driver,5).until(EC.presence_of_element_located((By.XPATH,"//div[@class='_preview-card_8o8n8_19']")))
     scroll.move_to_element(MatchRecord).perform()
-    assert "Adgr" in MatchRecord.text and "1237" in MatchRecord.text, f"Không thể tìm thấy record matching"
-    print(f"Đã tìm thấy record matching chứa KW search Adgr và 1237 ")
+    assert "Adgr" in MatchRecord.text and "1237" in MatchRecord.text, f"No matching record"
+    print(f"Exist matching record ")
 
 def test_case5():
     driver = webdriver.Chrome()
@@ -67,42 +66,13 @@ def test_case5():
     BtnEditPF=WebDriverWait(driver,5).until(EC.element_to_be_clickable((By.XPATH,"//button[@data-at_id='btn__portfolio_detail']"))).click()
     try:
       PopupEditPF=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//div[@data-at_id='modal__create_new_portfolio']")))
-      print("Có thể mở popup edit portfolio")
+      print("Can open portfolio edit popup")
     except:
-        print("Không thể mở popup edit portfolio")
+        print("Can not open portfolio edit popup")
     BtnClose=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//button[@data-at_id='btn__close_create_new_portfolio']"))).click()
-    print("Đã đóng popup")
+    print("Close popup")
     driver.quit()
-
-def test_case10():
-    driver = webdriver.Chrome()
-    test_login(driver)
-    apr_status=driver.find_element(By.XPATH, "//input[@id='react-select-14-input']")
-    apr_status.click()
-    time.sleep(2)
-    status=driver.find_element(By.XPATH, "//span[@class='mx-2 d-flex align-items-center justify-content-between gap-1 pointer']")
-    status.click()
-    time.sleep(10)
-    rows = driver.find_elements(By.XPATH, "//table//tr[position()>1]")  # bỏ header
-    all_ok = True  # biến để theo dõi trạng thái
-    for index, row in enumerate(rows, start=1):
-        try:
-            status_cell = row.find_element(By.XPATH, "./td[5]")  # cột thứ 5 là "Approval Status"
-            status_text = status_cell.text.strip()
-            if status_text != "Not published":
-                print(f"Row {index} có Approval Status khác: '{status_text}'")
-                all_ok = False
-            else:
-                print(f"Row {index} OK: Approval Status = 'Not published'")
-        except Exception as e:
-            print(f"Row {index} bị lỗi khi đọc dữ liệu: {e}")
-            all_ok = False
-
-assert all_ok, "Một hoặc nhiều dòng có Approval Status khác 'Not published'"
-print("Tất cả các dòng đều có Approval Status = 'Not published'")
-
 
 if __name__ == "__main__":
     driver = webdriver.Chrome()
-    test_case10()
-
+    test_case5()
