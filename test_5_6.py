@@ -38,18 +38,14 @@ def test_case1():
 def test_case2():
     driver = webdriver.Chrome()
     test_login(driver)
-    filter_1 = driver.find_element(By.XPATH, "//div[@class='_select_19ily_1 css-ll793-control']")
+    filter_1 = WebDriverWait(driver,5).until(EC.visibility_of_element((By.XPATH, "//div[@class='_select_19ily_1 css-ll793-control']")))
     filter_1.click()
-    time.sleep(1)
-    dropdownEl = driver.find_element(By.XPATH, "//span[@data-at_id='select__multi_icontains']")
+    dropdownEl = WebDriverWait(driver,5).until(EC.visibility_of_element((By.XPATH, "//span[@data-at_id='select__multi_icontains']")))
     dropdownEl.click()
-    time.sleep(1)
-    input_filter_1 = driver.find_element(By.XPATH, "//input[@id='textSearch1']")
+    input_filter_1 = WebDriverWait(driver,5).until(EC.visibility_of_element((By.XPATH, "//input[@id='textSearch1']")))
     input_filter_1.send_keys("Adgr")
-    time.sleep(1)
-    input_filter_2 = driver.find_element(By.XPATH, "//input[@id='textSearch2']")
+    input_filter_2 = WebDriverWait(driver,5).until(EC.visibility_of_element((By.XPATH, "//input[@id='textSearch2']")))
     input_filter_2.send_keys("1237")
-    time.sleep(3)
     btn_apply = driver.find_element(By.XPATH,"//button[@data-at_id='btn__search_apply']")
     scroll = ActionChains(driver)
     scroll.move_to_element(btn_apply).perform()
@@ -73,6 +69,38 @@ def test_case5():
     print("Close popup")
     driver.quit()
 
+# def test_case6():
+#     driver=webdriver.Chrome()
+#     test_login(driver)
+#     num_of_records = 0
+#     rows = driver.find_element(By.XPATH)
+
+def test_case8():
+    driver=webdriver.Chrome()
+    test_login(driver)
+    checkbox1=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//td[@data-at_id='td__table_rsa_select_2840']")))
+    checkbox2=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//td[@data-at_id='td__table_rsa_select_2838']")))
+    scroll=ActionChains(driver)
+    scroll.move_to_element(checkbox2).perform()
+    checkbox1.click()
+    checkbox2.click()
+    btn_overwrite=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//span[@data-at_id='btn__bulk_overwrite_header_table_action']")))
+    assert "Bulk Overwrite" in btn_overwrite.text, f"not appear button"
+    print("appear button")
+
+def test_case9():
+    driver=webdriver.Chrome()
+    test_login(driver)
+    page1=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//li[@class='page-item active']")))
+    record_of_page1=
+    scroll=ActionChains(driver)
+    scroll.move_to_element(page1).perform()
+    page2=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//a[@aria-label='Go to page 2']")))
+    assert "2" in page2.text, f"No exist page 2"
+    page2.click()
+    time.sleep(5)
+
+
 if __name__ == "__main__":
     driver = webdriver.Chrome()
-    test_case5()
+    test_case9()
