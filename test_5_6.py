@@ -92,7 +92,7 @@ def test_case9():
     driver=webdriver.Chrome()
     test_login(driver)
     page1=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//li[@class='page-item active']")))
-    record_of_page1=
+    
     scroll=ActionChains(driver)
     scroll.move_to_element(page1).perform()
     page2=WebDriverWait(driver,5).until(EC.visibility_of_element_located((By.XPATH,"//a[@aria-label='Go to page 2']")))
